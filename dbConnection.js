@@ -1,4 +1,10 @@
+import "jsr:@std/dotenv/load";
 import { Client } from "https://deno.land/x/postgres@v0.17.0/mod.ts";
+
+const debug = function (arg) {
+  console.log(arg);
+  return arg;
+};
 
 const displayConnectionSuccessMessage = (credentials) => {
   return console.log(
@@ -21,11 +27,11 @@ const connectToDatabase = (credentials) => {
 };
 
 const credentials = {
-  user: "postgres",
-  database: "dvd_rental",
-  hostname: "localhost",
-  port: 5432,
-  password: "PottiSatya27@SQL",
+  user: Deno.env.get("USER_NAME"),
+  database: Deno.env.get("DATABASE"),
+  hostname: Deno.env.get("HOST"),
+  port: Deno.env.get("PORT"),
+  password: Deno.env.get("PASSWORD"),
 };
 
 connectToDatabase(credentials);
