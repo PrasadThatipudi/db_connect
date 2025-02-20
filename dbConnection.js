@@ -6,13 +6,17 @@ const displayConnectionSuccessMessage = (credentials) => {
   );
 };
 
+const displayErrorMessage = (error) => {
+  return console.log(`Error occurred:${error.message}`);
+};
+
 const connectToDatabase = (credentials) => {
   const client = new Client(credentials);
 
   client
     .connect()
     .then(() => displayConnectionSuccessMessage(credentials))
-    .catch((error) => console.log(`Error occurred:${error.message}`))
+    .catch(displayErrorMessage)
     .finally(() => client.end());
 };
 
